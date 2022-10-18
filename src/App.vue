@@ -4,7 +4,7 @@
   </div>
   <todo-input @addTodo="addTodoItem"></todo-input>
   <todo-list :todoItem="todoItem" @reDel="removeDel"></todo-list>
-  <todo-footer></todo-footer>
+  <todo-footer @clearAll="clearAll"></todo-footer>
 </template>
 
 <script>
@@ -33,7 +33,11 @@ export default {
       console.log( num +"신호잘받음" )
       this.todoItem.splice(num,1)
       localStorage.removeItem(item)
-    }
+    },
+    clearAll(){
+      localStorage.clear();
+      this.todoItem = [];
+    },
   }
 
 }
