@@ -5,20 +5,35 @@
     <div class="btn" @click="todoItem">할일</div>
   </div>
 
-</template>
+  <modal v-if="modalView" @click="modalView=false" >
+    <template v-slot:header>경고</template>
+    <template v-slot:body>자료를 입력하세요</template>
+  </modal>
 
+</template>
 <script>
+import Modal from '@/components/Modal.vue';
+
 export default {
+  components: { Modal },
+
     data(){
         return {
-            newTodoItem:''
+            newTodoItem:'',
+            modalView:false,
         }
     },
     methods:{
         todoItem(){
-            let value = this.newTodoItem;
-            this.$emit("addTodo",value);
-            // this.newTodoItem = document.querySelector(".inp").value;
+            if( this.newTodoItem != ""){
+                let value = this.newTodoItem && this.newTodoItem.trim();
+                this.$emit("addTodo",value);
+                // this.newTodoItem = document.querySelector(".inp").value;
+            }else{
+                // alert("오늘의할일을 입력하세요")
+                this.modalView = true
+            }
+            this.newTodoItem = ''
         }
     }
 }
