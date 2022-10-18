@@ -27,7 +27,7 @@ export default {
         position: fixed;
         left: 50%;
         top: 10%;
-        transform:translateX(-50%);
+        margin-left:-150px ;
         display: flex;
         justify-content: center;
         align-items: center;
